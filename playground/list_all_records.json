@@ -1,0 +1,179 @@
+{
+    "items": [
+        {
+            "type": "NS",
+            "id": 18715143,
+            "name": "@",
+            "content": "ns1.websupport.sk",
+            "ttl": 600,
+            "note": ""
+        },
+        {
+            "type": "NS",
+            "id": 18715146,
+            "name": "@",
+            "content": "ns2.websupport.sk",
+            "ttl": 600,
+            "note": ""
+        },
+        {
+            "type": "NS",
+            "id": 18715149,
+            "name": "@",
+            "content": "ns3.websupport.sk",
+            "ttl": 600,
+            "note": ""
+        },
+        {
+            "type": "A",
+            "id": 18715152,
+            "name": "*",
+            "content": "37.9.175.5",
+            "ttl": 600,
+            "note": ""
+        },
+        {
+            "type": "A",
+            "id": 18715155,
+            "name": "@",
+            "content": "37.9.175.5",
+            "ttl": 600,
+            "note": ""
+        },
+        {
+            "type": "A",
+            "id": 18715158,
+            "name": "www",
+            "content": "37.9.175.5",
+            "ttl": 600,
+            "note": ""
+        },
+        {
+            "type": "A",
+            "id": 18715161,
+            "name": "mailin1",
+            "content": "37.9.169.110",
+            "ttl": 600,
+            "note": ""
+        },
+        {
+            "type": "A",
+            "id": 18715164,
+            "name": "mailin2",
+            "content": "37.9.169.111",
+            "ttl": 600,
+            "note": ""
+        },
+        {
+            "type": "MX",
+            "prio": 10,
+            "id": 18715167,
+            "name": "@",
+            "content": "mailin2.php-assignment-9.ws",
+            "ttl": 600,
+            "note": ""
+        },
+        {
+            "type": "MX",
+            "prio": 100,
+            "id": 18715170,
+            "name": "@",
+            "content": "mailin1.php-assignment-9.ws",
+            "ttl": 600,
+            "note": ""
+        },
+        {
+            "type": "TXT",
+            "id": 18715173,
+            "name": "@",
+            "content": "spf2.0\/pra a mx include:_sid.websupport.sk ?all",
+            "ttl": 600,
+            "note": ""
+        },
+        {
+            "type": "TXT",
+            "id": 18715176,
+            "name": "@",
+            "content": "v=spf1 a mx include:_spf.websupport.sk ?all",
+            "ttl": 600,
+            "note": ""
+        },
+        {
+            "type": "A",
+            "id": 18715179,
+            "name": "admin",
+            "content": "37.9.175.26",
+            "ttl": 600,
+            "note": ""
+        },
+        {
+            "type": "A",
+            "id": 18715182,
+            "name": "mail",
+            "content": "37.9.175.24",
+            "ttl": 600,
+            "note": ""
+        },
+        {
+            "type": "A",
+            "id": 18715185,
+            "name": "webmail",
+            "content": "37.9.175.24",
+            "ttl": 600,
+            "note": ""
+        },
+        {
+            "type": "A",
+            "id": 18715188,
+            "name": "smail",
+            "content": "37.9.175.24",
+            "ttl": 600,
+            "note": ""
+        },
+        {
+            "type": "A",
+            "id": 18715191,
+            "name": "smtp",
+            "content": "37.9.175.24",
+            "ttl": 600,
+            "note": ""
+        },
+        {
+            "type": "A",
+            "id": 18715194,
+            "name": "pop3",
+            "content": "37.9.175.24",
+            "ttl": 600,
+            "note": ""
+        },
+        {
+            "type": "A",
+            "id": 18715197,
+            "name": "imap",
+            "content": "37.9.175.24",
+            "ttl": 600,
+            "note": ""
+        },
+        {
+            "type": "CNAME",
+            "id": 18715200,
+            "name": "autodiscover",
+            "content": "web.prod.bts.websupport.sk",
+            "ttl": 600,
+            "note": ""
+        },
+        {
+            "type": "CNAME",
+            "id": 18715203,
+            "name": "autoconfig",
+            "content": "web.prod.bts.websupport.sk",
+            "ttl": 600,
+            "note": ""
+        }
+    ],
+    "pager": {
+        "page": 0,
+        "pagesize": null,
+        "items": 21
+    }
+}

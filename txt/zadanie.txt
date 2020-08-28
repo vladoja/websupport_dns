@@ -1,0 +1,12 @@
+Prihlás sa do https://admin.websupport.sk/ pod užívateľom: ws-php-assignment-9 a heslom: By8WwmiXks  
+
+V zozname služieb máš doménu: php-assignment-9.ws .
+
+Podľa api na https://rest.websupport.sk/docs/v1.zone vytvor jednoduché webové rozhranie, ktoré vylistuje dns záznamy (A, MX atď. v jednom zozname),
+vie pridať nový záznam a vie vymazať záznam. Stačí, keď bude podporovať jednu doménu, ktorá bude niekde v konfigu napevno.
+
+Daj si, prosím, pozor na to, že rôzne záznamy možu mať rôzne parametre. (MX vs A, atď.)
+
+Skús to nakódit bez použitia frameworkov alebo iných knižníc. 
+
+Vypracované zadanie nám pošli, prosím, do 7 dní. Ak by si potreboval na vypracovanie viac času alebo mal otázky, daj nám určite vedieť. 
