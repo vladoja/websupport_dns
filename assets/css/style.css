@@ -9,25 +9,54 @@ html, body {
     flex-direction: column;    
     justify-content: center;
     align-items: center;
-    height: 100%;
+    min-height: 100%;
 }
 
 .d-table {
     min-width: 800px;
     display: flex;
     flex-wrap: wrap;
+    background-color: #ffffff;
+    margin: 0;
 }
 
 .d-table ul {
     list-style-type: none;
     width: 100%;
+    padding-left: 0;
+    margin: 0;
+}
+
+.d-header {
+    background-color: #4d555d;
+    color: #ffffff;
+    height: 3rem;
+    line-height: 3rem !important;
 }
 
 .d-row {
     display: flex;
+    height: 2rem;
+    overflow: hidden;
+    border-bottom: solid 1px #eef0f2;
 }
 
+.d-col {
+    padding-left: .5rem;
+    height: 2rem;
+    line-height: 2rem;
+}
 .d-col-1  { width: 10%; }
-.d-col-2  { width: 30%; }
+.d-col-2  { width: 20%; }
 .d-col-3  { width: 50%; }
 .d-col-4  { width: 10%; }
+.d-col-5 {
+    width: 5%;
+    font-weight: 900;
+    color: green;
+}
+.d-col-6 { 
+    width: 5%;
+    font-weight: 900;
+    color: red;
+}

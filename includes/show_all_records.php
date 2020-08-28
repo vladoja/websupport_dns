@@ -14,16 +14,34 @@ function read_all_records__poc()
     return null;
 }
 
+function create_table_header()
+{
+    $html = "<li class='d-row d-header'>" . PHP_EOL;
+    $html .= sprintf('%s %s %s', "<span class='d-col d-col-1'>", 'type', '</span>');
+    $html .= sprintf('%s %s %s', "<span class='d-col d-col-2'>", 'name', '</span>');
+    $html .= sprintf('%s %s %s', "<span class='d-col d-col-3'>", 'content', '</span>');
+    $html .= sprintf('%s %s %s', "<span class='d-col d-col-4'>", 'ttl', '</span>');
+    $html .= sprintf('%s %s %s', "<span class='d-col d-col-5'>", '', '</span>');
+    $html .= sprintf('%s %s %s', "<span class='d-col d-col-6'>", '', '</span>');
+
+    $html .= "</li>" . PHP_EOL;
+    return $html;
+}
+
 function show_records_table__poc($records)
 {
     $html = PHP_EOL . "<div class='d-table'>" . PHP_EOL;
     $html .= "<ul>" . PHP_EOL;
+    $html .= create_table_header();
+
     foreach ($records as $record) {
         $item = "<li class='d-row'>";
-        $item .= sprintf('%s %s %s', "<span class='d-col-1'>", $record['type'], '</span>');
-        $item .= sprintf('%s %s %s', "<span class='d-col-2'>", $record['name'], '</span>');
-        $item .= sprintf('%s %s %s', "<span class='d-col-3'>", $record['content'], '</span>');
-        $item .= sprintf('%s %s %s', "<span class='d-col-4'>", $record['ttl'], '</span>');
+        $item .= sprintf('%s %s %s', "<span class='d-col d-col-1'>", $record['type'], '</span>');
+        $item .= sprintf('%s %s %s', "<span class='d-col d-col-2'>", $record['name'], '</span>');
+        $item .= sprintf('%s %s %s', "<span class='d-col d-col-3'>", $record['content'], '</span>');
+        $item .= sprintf('%s %s %s', "<span class='d-col d-col-4'>", $record['ttl'], '</span>');
+        $item .= sprintf('%s %s %s', "<span class='d-col d-col-5'>", '&#9998;', '</span>');
+        $item .= sprintf('%s %s %s', "<span class='d-col d-col-6'>", '&#128465;', '</span>');
         $item .= "</li>";
         $html .= $item . PHP_EOL;
     }
