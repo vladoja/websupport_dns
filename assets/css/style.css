@@ -11,3 +11,23 @@ html, body {
     align-items: center;
     height: 100%;
 }
+
+.d-table {
+    min-width: 800px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.d-table ul {
+    list-style-type: none;
+    width: 100%;
+}
+
+.d-row {
+    display: flex;
+}
+
+.d-col-1  { width: 10%; }
+.d-col-2  { width: 30%; }
+.d-col-3  { width: 50%; }
+.d-col-4  { width: 10%; }
