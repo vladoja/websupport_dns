@@ -42,6 +42,9 @@ class WSApiCaller
                 if ($data_json)
                     curl_setopt($ch, CURLOPT_POSTFIELDS, $data_json);
                 break;
+            case "DELETE":
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+                break;
         }
 
         curl_setopt($ch, CURLOPT_URL, sprintf('%s:%s', $this->api, $path));
