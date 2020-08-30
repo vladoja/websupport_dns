@@ -2,6 +2,7 @@
 require 'includes/header.php';
 require 'includes/form_handlers/create_dns_record_handler.php';
 
+validate_dns_type();
 
 
 function parse_form_type()
