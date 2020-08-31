@@ -102,6 +102,10 @@ body {
     line-height: 1.5;
 }
 
+.success {
+    background-color: green;
+}
+
 
 .close-btn {
     padding-left: 15px;

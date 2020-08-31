@@ -6,7 +6,10 @@ require 'includes/header.php';
     
     <?php 
     // TODO: Dat ako konstantu
-    output_validation_error(GLOBAL_ERROR_MESSAGES);?>
+    if (!output_validation_error(GLOBAL_ERROR_MESSAGES)) {
+        output_success_messages();
+    }
+    ?>
     <div>
         <a class="btn btn-primary add" href="create_new_record.php?dns_type=a">Vytvoriť nový záznam</a>
     </div>

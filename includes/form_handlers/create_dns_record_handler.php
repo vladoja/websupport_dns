@@ -7,6 +7,7 @@ if (isset($_POST['create_button'])) {
     if (check_for_error_messages(FORM_ERROR_MESSAGES)) {
         header('Location: create_new_record.php?dns_type=a');
     } else {
+        add_msg_to_success('Zaznam uspesne pridany .');
         header('Location:index.php');
     }
     exit();
