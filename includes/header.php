@@ -1,3 +1,6 @@
+<?php
+require 'handlers/global.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
