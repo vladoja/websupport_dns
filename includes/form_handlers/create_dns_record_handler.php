@@ -1,5 +1,6 @@
 <?php
 require './includes/classes/RequestContentFactory.php';
+require './includes/classes/WSApiCaller.php';
 
 define('DNS_TYPES', array('A', 'AAAA', 'ANAME', 'CAA', 'CNAME', 'MX', 'NS', 'SRV', 'TXT'));
 
@@ -12,8 +13,12 @@ if (isset($_POST['create_button'])) {
     } else {
         if ($values) {
             $request_json = RequestContentFactory::create_body($values['dns_type'], $values);
-            error_log('values: ' . $request_json);
+            if (!make_api_call($request_json)) {
+                header('Location: create_new_record.php?dns_type=a');
+                exit();
+            }
         }
+
         add_msg_to_success('Zaznam uspesne pridany .');
         header('Location:index.php');
     }
@@ -77,7 +82,7 @@ function validate_input()
     if (!filter_var($server_ip, FILTER_VALIDATE_IP)) {
         add_msg_to_errors(FORM_ERROR_MESSAGES, 'Neplatna IP adresa !');
         return false;
-    } 
+    }
 
     $ttl = getTextFromForm('ttl');
     if (!filter_var($ttl, FILTER_VALIDATE_INT)) {
@@ -91,6 +96,38 @@ function validate_input()
 }
 
 
-function make_api_call()
+function make_api_call($data_json)
 {
+    $method = 'POST';
+    $path = '/v1/user/self/zone/php-assignment-9.ws/record';
+    $caller = new WSApiCaller();
+
+    // $response = $caller->call($path, $method, $data_json);
+    $response = '{"status":"error","item":{"type":"A","id":null,"name":"@","content":"1.2.3.4","ttl":600,"note":null,"zone":{"name":"php-assignment-9.ws","service_id":84825,"updateTime":1598805340}},"errors":{"content":["For specified address already exists A record. It can not be overwritten. You need to edit it or delete it."]}}';
+    $response = '{"status":"success","item":{"type":"A","id":18857508,"name":"@","content":"1.2.3.8","ttl":600,"note":null,"zone":{"name":"php-assignment-9.ws","service_id":84825,"updateTime":1598805340}},"errors":{}}';
+
+    if ($response) {
+        $response = json_decode($response, true);
+    } else {
+        return false;
+    }
+
+    if (!isset($response['status'])) {
+        add_msg_to_errors(FORM_ERROR_MESSAGES, 'API Call failed !');
+        return false;
+    }
+
+    if ($response['status'] === 'error') {
+        $error_msg  = $response['errors']['content'][0];
+        // error_log('API Call failed. ' .  );
+        add_msg_to_errors(FORM_ERROR_MESSAGES, $error_msg);
+        return false;
+    }
+
+    if ($response['status'] !== 'success') {
+        add_msg_to_errors(FORM_ERROR_MESSAGES, "Unknown error");
+        return false;
+    }
+
+    return true;
 }
