@@ -15,12 +15,19 @@ class WSApiCaller
     public function call($path, $method = 'GET', $data = null)
     {
 
+        $error_msg = null;
         $ch = curl_init();
         $ch = $this->setCurlOptions($ch, $path, $method, $data);
         $response = curl_exec($ch);
+        $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        if (curl_errno($ch)) {
+            $error_msg = curl_error($ch);
+            // echo PHP_EOL, 'Curl failed: ', $error_msg, PHP_EOL;
+        }
+        // echo PHP_EOL, 'HTTP response status: ', $http_status;
         curl_close($ch);
 
-        return $response;
+        return $this->handle_response($http_status, $response, $error_msg);
     }
 
 
@@ -57,5 +64,34 @@ class WSApiCaller
         curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
 
         return $ch;
+    }
+
+    private function handle_response($http_status, $response_json, $error_msg = null)
+    {
+        if ($http_status === 200 || $http_status === 201 || $http_status === 204) {
+            $response = json_decode($response_json, true);
+            if (!isset($response['status'])) {
+                $response['status'] = 'success';
+            }
+            return json_encode($response);
+        } else if ($response_json) {
+            $response = json_decode($response_json, true);
+            if (!isset($response['status'])) {
+                $response['status'] = 'error';
+                if (isset($response['message'])) {
+                    $response['errors'] = array('content' => array($response['message']));
+                }                   
+                return json_encode($response);
+            }
+            return $response_json;
+        } else if (isset($error_msg)) {
+            $response['status'] = 'error';
+            // $new_response['errors'] = array('content' => array($error_msg));
+            // TODO: Dat genericku hlasku
+            $new_response['errors'] = array('content' => array($error_msg));
+            error_log('CURL call failed. Msg: '.$error_msg );
+            return json_encode($response);
+        }
+        return null;
     }
 }

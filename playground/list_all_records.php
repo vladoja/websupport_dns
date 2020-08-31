@@ -25,8 +25,15 @@ curl_setopt($ch, CURLOPT_USERPWD, $apiKey.':'.$signature);
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Date: ' . gmdate('Ymd\THis\Z', $time),
 ]);
+
  
 $response = curl_exec($ch);
+$http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+if (curl_errno($ch)) {
+    $error_msg = curl_error($ch);
+    echo PHP_EOL,'Curl failed: ', $error_msg, PHP_EOL;
+}
+echo PHP_EOL,'HTTP response status: ', $http_status, PHP_EOL;
 curl_close($ch);
  
 echo $response;
