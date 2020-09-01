@@ -102,12 +102,15 @@ function make_api_call($data_json)
     $path = '/v1/user/self/zone/php-assignment-9.ws/record';
     $caller = new WSApiCaller();
 
-    // $response = $caller->call($path, $method, $data_json);
-    $response = '{"status":"error","item":{"type":"A","id":null,"name":"@","content":"1.2.3.4","ttl":600,"note":null,"zone":{"name":"php-assignment-9.ws","service_id":84825,"updateTime":1598805340}},"errors":{"content":["For specified address already exists A record. It can not be overwritten. You need to edit it or delete it."]}}';
-    $response = '{"status":"success","item":{"type":"A","id":18857508,"name":"@","content":"1.2.3.8","ttl":600,"note":null,"zone":{"name":"php-assignment-9.ws","service_id":84825,"updateTime":1598805340}},"errors":{}}';
+    $response = $caller->call($path, $method, $data_json);
+    // $response = '{"status":"error","item":{"type":"A","id":null,"name":"@","content":"1.2.3.4","ttl":600,"note":null,"zone":{"name":"php-assignment-9.ws","service_id":84825,"updateTime":1598805340}},"errors":{"content":["For specified address already exists A record. It can not be overwritten. You need to edit it or delete it."]}}';
+    // $response = '{"status":"success","item":{"type":"A","id":18857508,"name":"@","content":"1.2.3.8","ttl":600,"note":null,"zone":{"name":"php-assignment-9.ws","service_id":84825,"updateTime":1598805340}},"errors":{}}';
+    // $response = '{"message":"Record not found","code":404,"status":"error","error_msg":"Record not found"}';
+    // $response = '{"message":"Error while parsing json","code":400,"status":"error","error_msg":"Error while parsing json"}';
 
     if ($response) {
         $response = json_decode($response, true);
+        // error_log(print_r($response, true));
     } else {
         return false;
     }
@@ -118,14 +121,17 @@ function make_api_call($data_json)
     }
 
     if ($response['status'] === 'error') {
-        $error_msg  = $response['errors']['content'][0];
-        // error_log('API Call failed. ' .  );
+        if (isset($response['error_msg'])) {
+            $error_msg  = $response['error_msg'];
+        } else {
+            $error_msg = 'API Call failed!';
+        }
         add_msg_to_errors(FORM_ERROR_MESSAGES, $error_msg);
         return false;
     }
 
     if ($response['status'] !== 'success') {
-        add_msg_to_errors(FORM_ERROR_MESSAGES, "Unknown error");
+        add_msg_to_errors(FORM_ERROR_MESSAGES, "Something went wrong!");
         return false;
     }
 

@@ -69,7 +69,7 @@ class WSApiCaller
 
     private function handle_response($http_status, $response_json, $error_msg = null)
     {
-        error_log("RESPONSE: CODE: $http_status  MSG: " .  $response_json);
+        // error_log("RESPONSE: CODE: $http_status  MSG: " .  $response_json);
         if (in_array($http_status, [200, 201, 204, 400, 401, 403, 404,])) {
             $response = json_decode($response_json, true);
             $first_error_msg = $this->get_first_error_msg_from_response($response);
@@ -84,12 +84,17 @@ class WSApiCaller
             return json_encode($response);
         } else if (isset($error_msg)) {
             $response['status'] = 'error';
-            // TODO: Dat genericku hlasku
             $new_response['error_msg'] = $error_msg;
-            error_log('CURL call failed. Msg: ' . $error_msg);
+            error_log('API call failed. Msg: ' . $error_msg);
+            return json_encode($response);
+        } else {
+            // TODO: Dat genericku hlasku
+            error_log('handle_response failed on unkown error. HTTP STATUS: ' . $http_status . '. Orginal response: ' . $response_json);
+            $response = array();
+            $response['status'] = 'error';
+            $new_response['error_msg'] = "API call failed. Unknown error.";
             return json_encode($response);
         }
-        return null;
     }
 
 
