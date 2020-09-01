@@ -58,6 +58,7 @@ class WSApiCaller
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
         curl_setopt($ch, CURLOPT_USERPWD, $this->apiKey . ':' . $signature);
+        // curl_setopt($ch, CURLOPT_FAILONERROR, true);
 
         $header = ['Date: ' . gmdate('Ymd\THis\Z', $time)];
         $header[] = 'Content-Type: application/json';
@@ -68,30 +69,56 @@ class WSApiCaller
 
     private function handle_response($http_status, $response_json, $error_msg = null)
     {
-        if ($http_status === 200 || $http_status === 201 || $http_status === 204) {
+        error_log("RESPONSE: CODE: $http_status  MSG: " .  $response_json);
+        if (in_array($http_status, [200, 201, 204, 400, 401, 403, 404,])) {
             $response = json_decode($response_json, true);
-            if (!isset($response['status'])) {
+            $first_error_msg = $this->get_first_error_msg_from_response($response);
+            if ($first_error_msg || ($http_status >= 400 && $http_status <= 404)) {
+                // Odpoved obsahuje chyby
+                $response['status'] = 'error';
+                $response['error_msg'] = $first_error_msg;
+            }
+            if (in_array($http_status, [200, 201, 204]) && isset($response['status']) === false) {
                 $response['status'] = 'success';
             }
             return json_encode($response);
-        } else if ($response_json) {
-            $response = json_decode($response_json, true);
-            if (!isset($response['status'])) {
-                $response['status'] = 'error';
-                if (isset($response['message'])) {
-                    $response['errors'] = array('content' => array($response['message']));
-                }                   
-                return json_encode($response);
-            }
-            return $response_json;
         } else if (isset($error_msg)) {
             $response['status'] = 'error';
-            // $new_response['errors'] = array('content' => array($error_msg));
             // TODO: Dat genericku hlasku
-            $new_response['errors'] = array('content' => array($error_msg));
-            error_log('CURL call failed. Msg: '.$error_msg );
+            $new_response['error_msg'] = $error_msg;
+            error_log('CURL call failed. Msg: ' . $error_msg);
             return json_encode($response);
         }
         return null;
+    }
+
+
+    public function get_error_msg_from_response(array $response)
+    {
+        if (isset($response['errors']) && is_array($response['errors']) && count($response['errors']) > 0) {
+            return $response['errors'];
+        } else {
+            return null;
+        }
+    }
+
+
+    public function get_first_error_msg_from_response(array $response)
+    {
+        if (isset($response['errors']) && is_array($response['errors']) && count($response['errors']) > 0) {
+            $key = null;
+            $value = null;
+            foreach (array_slice($response['errors'], 0, 1, true) as $key => $value);
+            $value = (is_array($value) && count($value) > 0) ? $value[0] : $value;
+            return sprintf('%s For parameter %s', $value, $key);
+        } else if (isset($response['message'])) {
+            if (is_array($response['message']) && count($response['message']) > 0) {
+                return $response['message'][0];
+            } else {
+                return $response['message'];
+            }
+        } {
+            return null;
+        }
     }
 }
