@@ -76,8 +76,8 @@ function validate_input()
     $name = getTextFromForm('name');
 
 
-    $server_ip = getTextFromForm('server_ip');
-    if (!filter_var($server_ip, FILTER_VALIDATE_IP)) {
+    $content = getTextFromForm('content');
+    if (!filter_var($content, FILTER_VALIDATE_IP)) {
         add_msg_to_errors(FORM_ERROR_MESSAGES, 'Neplatna IP adresa !');
         return false;
     }
@@ -90,9 +90,9 @@ function validate_input()
 
     $note = getTextFromForm('note');
 
-    $_SESSION[FORM_INPUT] = compact('dns_type', 'name', 'server_ip', 'ttl', 'note');
+    $_SESSION[FORM_INPUT] = compact('dns_type', 'name', 'content', 'ttl', 'note');
 
-    return compact('dns_type', 'name', 'server_ip', 'ttl', 'note');
+    return compact('dns_type', 'name', 'content', 'ttl', 'note');
 }
 
 
@@ -101,6 +101,9 @@ function make_api_call($data_json)
     $method = 'POST';
     $path = '/v1/user/self/zone/php-assignment-9.ws/record';
     $caller = new WSApiCaller();
+    if ($data_json) {
+        error_log("DATA JSON: " . $data_json);
+    }
 
     $response = $caller->call($path, $method, $data_json);
     // $response = '{"status":"error","item":{"type":"A","id":null,"name":"@","content":"1.2.3.4","ttl":600,"note":null,"zone":{"name":"php-assignment-9.ws","service_id":84825,"updateTime":1598805340}},"errors":{"content":["For specified address already exists A record. It can not be overwritten. You need to edit it or delete it."]}}';

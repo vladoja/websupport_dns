@@ -14,7 +14,10 @@ class WSApiCaller
 
     public function call($path, $method = 'GET', $data = null)
     {
-
+        if ($data) {
+            error_log('REQUEST JSON: '. $data);
+        }
+        
         $error_msg = null;
         $ch = curl_init();
         $ch = $this->setCurlOptions($ch, $path, $method, $data);
@@ -69,7 +72,7 @@ class WSApiCaller
 
     private function handle_response($http_status, $response_json, $error_msg = null)
     {
-        // error_log("RESPONSE: CODE: $http_status  MSG: " .  $response_json);
+        error_log("RESPONSE: CODE: $http_status  MSG: " .  $response_json);
         if (in_array($http_status, [200, 201, 204, 400, 401, 403, 404,])) {
             $response = json_decode($response_json, true);
             $first_error_msg = $this->get_first_error_msg_from_response($response);
