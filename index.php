@@ -18,7 +18,7 @@ clear_form_input_values();
             <h1 class="subpage-header">Vsetky DNS zaznamy</h1>
         </div>
         <div class="col">
-            <a class="btn btn-primary add" href="create_new_record.php?dns_type=a">Vytvoriť nový záznam</a>
+            <a class="btn btn-primary add" id="createRecordLink" href="create_new_record.php?dns_type=a">Vytvoriť nový záznam</a>
             <?php echo ComponentFactory::create_dns_dropdown();?>
         </div>
     </div>

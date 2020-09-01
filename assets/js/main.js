@@ -20,7 +20,22 @@ function initAlertCloseButtons(className) {
 }
 
 
+function initSelectDnsTypeComponent() {
+    let select = document.getElementById('dnsTypeSelect');
+    let createRecordLink = document.getElementById('createRecordLink');
+    if (select && createRecordLink) {
+        select.addEventListener('change', function () {
+            let url = createRecordLink.href;
+            url = url.substring(0, url.indexOf('=')) + '=' + this.value;
+            createRecordLink.href = url;
+            // createRecordLink.href = 'http://localhost:8000/create_new_record.php?dns_type=' + this.value;
+        });
+    }
+}
+
+
 initAlertCloseButtons('close-btn');
+initSelectDnsTypeComponent();
 
 document.addEventListener('DOMContentLoaded', function () {
     console.log('DOM loaded');
