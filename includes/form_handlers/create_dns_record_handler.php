@@ -5,14 +5,17 @@ require './includes/classes/WSApiCaller.php';
 
 $error_message = '';
 if (isset($_POST['create_button'])) {
+    // error_log('HTTP_REFERER: ' . $_SERVER['HTTP_REFERER']);
+    $dns_type = get_dns_type_from_url($_SERVER['HTTP_REFERER']);
     $values = validate_input();
     if (check_for_error_messages(FORM_ERROR_MESSAGES)) {
-        header('Location: create_new_record.php?dns_type=a');
+        header('Location: create_new_record.php?dns_type='.$dns_type);
     } else {
         if ($values) {
             $request_json = RequestContentFactory::create_body($values['dns_type'], $values);
             if (!make_api_call($request_json)) {
-                header('Location: create_new_record.php?dns_type=a');
+
+                header('Location: create_new_record.php?dns_type='.$dns_type);
                 exit();
             }
         }
@@ -147,3 +150,12 @@ function get_form_input_value(string $input_name, $default = null)
     return isset($_SESSION[FORM_INPUT][$input_name]) ? $_SESSION[FORM_INPUT][$input_name] : $default;
 }
 
+
+function get_dns_type_from_url($url)
+{
+    $url_query = parse_url($url, PHP_URL_QUERY);
+    parse_str($url_query, $params);
+    $dns_type =  $params['dns_type'];
+
+    return $dns_type;
+}
