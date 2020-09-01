@@ -50,10 +50,10 @@ function show_records_table__poc($records)
     return $html;
 }
 
-echo "DNS table";
+
 $records = read_all_records__poc();
-if (isset($records)) {
-    echo "<br>", "Records: ", count($records);
-}
+// if (isset($records)) {
+//     echo "<br>", "Records: ", count($records);
+// }
 
 echo show_records_table__poc($records);

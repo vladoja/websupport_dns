@@ -2,8 +2,6 @@
 require './includes/classes/RequestContentFactory.php';
 require './includes/classes/WSApiCaller.php';
 
-define('DNS_TYPES', array('A', 'AAAA', 'ANAME', 'CAA', 'CNAME', 'MX', 'NS', 'SRV', 'TXT'));
-
 
 $error_message = '';
 if (isset($_POST['create_button'])) {

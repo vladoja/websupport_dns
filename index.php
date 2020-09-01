@@ -1,5 +1,7 @@
 <?php
 require 'includes/header.php';
+require 'includes/classes/ComponentFactory.php';
+
 clear_form_input_values();
 ?>
 
@@ -11,8 +13,14 @@ clear_form_input_values();
         output_success_messages();
     }
     ?>
-    <div>
-        <a class="btn btn-primary add" href="create_new_record.php?dns_type=a">Vytvoriť nový záznam</a>
+    <div class="row">
+        <div class="col">
+            <h1 class="subpage-header">Vsetky DNS zaznamy</h1>
+        </div>
+        <div class="col">
+            <a class="btn btn-primary add" href="create_new_record.php?dns_type=a">Vytvoriť nový záznam</a>
+            <?php echo ComponentFactory::create_dns_dropdown();?>
+        </div>
     </div>
     <?php include 'includes/show_all_records.php';?>
 </div>

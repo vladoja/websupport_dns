@@ -117,3 +117,80 @@ body {
     cursor: pointer;
     transition: 0.3s;
 }
+
+.btn {
+    border-radius: 2px;
+    transition: all 0.2s ease-out;
+    border: 1px solid #39434b;
+    border-top-color: rgb(57, 67, 75);
+    border-right-color: rgb(57, 67, 75);
+    border-bottom-color: rgb(57, 67, 75);
+    border-left-color: rgb(57, 67, 75);
+    background-color: transparent;
+    color: #39434b;
+    padding: 9px 40px;
+}
+
+.btn.btn-primary {
+    background-color: #009DFA;
+    border-color: #009DFA;
+    color: #fff;
+}
+
+a.btn {
+    text-align: center;
+    text-decoration: none;
+}
+
+.row {
+    min-width: 800px;
+    display: inline-flex;
+}
+
+.col {
+    height: 4rem;
+    line-height: 4rem;
+    width: 100%;
+}
+
+.row>.btn {
+    display: inline-flex;
+}
+
+
+.subpage-header {
+    color: #39434b;
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 38px;
+}
+
+.dropdown {
+    display: inline;
+    padding: 0.5rem 0;
+    background-color: #009DFA;
+    border-color: #009DFA;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.dropdown select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+
+    background-repeat: no-repeat;
+    background-size: 0.5em auto;
+    background-position: right 0.25em center;
+    padding-right: 1em;
+
+    border: 0px;
+    outline: 0px;
+    background-color: inherit;
+    color: inherit;
+
+    background-image: url("data:image/svg+xml;charset=utf-8, \
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 40'> \
+        <polygon points='0,0 60,0 30,40' style='fill:black;'/> \
+      </svg>");
+}
