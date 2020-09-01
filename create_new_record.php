@@ -43,9 +43,16 @@ if (!$form_type) {
                     <input type="text" name="name" id="name" class="form-control" required="" autofocus="" value="<?php echo get_form_input_value('name');?>">
                 </div>
                 <div class="form-group">
-                    <label for="server_ip">Server IP</label>
-                    <input type="text" name="server_ip" id="server_ip" class="form-control" required="" autofocus="" value="<?php echo get_form_input_value('server_ip');?>">
+                    <label for="content">Server IP</label>
+                    <input type="text" name="content" id="content" class="form-control" required="" autofocus="" value="<?php echo get_form_input_value('content');?>">
                 </div>
+                <?php if (strtoupper($form_type) === 'MX') {
+                    echo '<div class="form-group">';
+                    echo  '<label for="priority">Record Priority</label>';
+                    echo '<input type="text" name="priority" id="priority" class="form-control" required="" autofocus="" value="'.get_form_input_value('priority') .'">';
+                    echo '</div>';
+                }?>
+
                 <div class="form-group">
                     <label for="ttl">TTL</label>
                     <input type="text" name="ttl" id="ttl" class="form-control" value="<?php echo get_form_input_value('ttl', 600);?>" required="" autofocus="">
