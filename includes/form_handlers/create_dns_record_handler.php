@@ -75,7 +75,7 @@ function validate_input()
         $dns_type = strtoupper($dns_type);
     }
 
-    $name = getTextFromForm('note');
+    $name = getTextFromForm('name');
 
 
     $server_ip = getTextFromForm('server_ip');
@@ -91,6 +91,8 @@ function validate_input()
     }
 
     $note = getTextFromForm('note');
+
+    $_SESSION[FORM_INPUT] = compact('dns_type', 'name', 'server_ip', 'ttl', 'note');
 
     return compact('dns_type', 'name', 'server_ip', 'ttl', 'note');
 }
@@ -137,3 +139,10 @@ function make_api_call($data_json)
 
     return true;
 }
+
+
+function get_form_input_value(string $input_name, $default = null)
+{
+    return isset($_SESSION[FORM_INPUT][$input_name]) ? $_SESSION[FORM_INPUT][$input_name] : $default;
+}
+

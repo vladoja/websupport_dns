@@ -3,6 +3,12 @@
 $timezone = date_default_timezone_set("Europe/Bratislava");
 require_once './config/constants.php';
 
+function clear_form_input_values()
+{
+    if (isset($_SESSION[FORM_INPUT])) {
+        $_SESSION[FORM_INPUT] = null;
+    }
+}
 
 function check_for_error_messages(string $msg_category)
 {

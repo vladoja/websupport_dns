@@ -1,5 +1,6 @@
 <?php
 require 'includes/header.php';
+clear_form_input_values();
 ?>
 
     <h4>Welcome to DNS manager</h4>
