@@ -9,13 +9,13 @@ if (isset($_POST['create_button'])) {
     $dns_type = get_dns_type_from_url($_SERVER['HTTP_REFERER']);
     $values = validate_input();
     if (check_for_error_messages(FORM_ERROR_MESSAGES)) {
-        header('Location: create_new_record.php?dns_type='.$dns_type);
+        header('Location: create_new_record.php?dns_type=' . $dns_type);
     } else {
         if ($values) {
             $request_json = RequestContentFactory::create_body($values['dns_type'], $values);
             if (!make_api_call($request_json)) {
 
-                header('Location: create_new_record.php?dns_type='.$dns_type);
+                header('Location: create_new_record.php?dns_type=' . $dns_type);
                 exit();
             }
         }
@@ -80,9 +80,12 @@ function validate_input()
 
 
     $content = getTextFromForm('content');
-    if (!filter_var($content, FILTER_VALIDATE_IP)) {
-        add_msg_to_errors(FORM_ERROR_MESSAGES, 'Neplatna IP adresa !');
-        return false;
+
+    if ($dns_type === 'A' || $dns_type === 'AAAA') {
+        if (!filter_var($content, FILTER_VALIDATE_IP)) {
+            add_msg_to_errors(FORM_ERROR_MESSAGES, 'Neplatna IP adresa !');
+            return false;
+        }
     }
 
     $ttl = getTextFromForm('ttl');
@@ -93,9 +96,12 @@ function validate_input()
 
     $note = getTextFromForm('note');
 
-    $_SESSION[FORM_INPUT] = compact('dns_type', 'name', 'content', 'ttl', 'note');
+    add_form_input_values_to_session($dns_type);
 
-    return compact('dns_type', 'name', 'content', 'ttl', 'note');
+    // return compact('dns_type', 'name', 'content', 'ttl', 'note');
+    $values = $_SESSION[FORM_INPUT];
+    // error_log('values: ' . print_r($values, true));
+    return $values;
 }
 
 
@@ -105,7 +111,7 @@ function make_api_call($data_json)
     $path = '/v1/user/self/zone/php-assignment-9.ws/record';
     $caller = new WSApiCaller();
     if ($data_json) {
-        error_log("DATA JSON: " . $data_json);
+        // error_log("DATA JSON: " . $data_json);
     }
 
     $response = $caller->call($path, $method, $data_json);
@@ -158,4 +164,31 @@ function get_dns_type_from_url($url)
     $dns_type =  $params['dns_type'];
 
     return $dns_type;
+}
+
+function add_form_input_values_to_session($dns_type)
+{
+    // if (in_array($dns_type, ['A', 'AAAA', 'ANAME', 'CNAME', 'NS', 'TXT',])
+
+    $standard_fields = array('dns_type', 'name', 'content', 'ttl', 'note');
+
+    $_SESSION[FORM_INPUT] = array();
+    foreach ($standard_fields as $field) {
+        $_SESSION[FORM_INPUT][$field] = getTextFromForm($field);
+    }
+    // Kvoli prevodu na upper case sa zopakuje pridanie
+    $_SESSION[FORM_INPUT]['dns_type'] = strtoupper($dns_type);
+
+    if ($dns_type === 'MX') {
+        $_SESSION[FORM_INPUT]['prio'] = getTextFromForm('prio');
+    }
+
+
+    if ($dns_type === 'SRV') {
+        $_SESSION[FORM_INPUT]['prio'] = getTextFromForm('prio');
+        $_SESSION[FORM_INPUT]['port'] = getTextFromForm('port');
+        $_SESSION[FORM_INPUT]['weight'] = getTextFromForm('weight');
+    }
+
+    // error_log('SESSION values: ' . print_r($_SESSION[FORM_INPUT], true));
 }
