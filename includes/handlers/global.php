@@ -151,3 +151,32 @@ function get_query_param($param_name) {
         return null;
     }
 }
+
+
+function redirect_to_index() {
+    header('Location: index.php');
+    exit();
+}
+
+function handle_error_messages_from_response($response,string $message_category) {
+    if (!isset($response['status'])) {
+        add_msg_to_errors($message_category, 'API Call failed !');
+        return false;
+    }
+
+    if ($response['status'] === 'error') {
+        if (isset($response['error_msg'])) {
+            $error_msg  = $response['error_msg'];
+        } else {
+            $error_msg = 'API Call failed!';
+        }
+        add_msg_to_errors($message_category, $error_msg);
+        return false;
+    }
+
+    if ($response['status'] !== 'success') {
+        add_msg_to_errors($message_category, "Something went wrong!");
+        return false;
+    }
+    return true;
+}

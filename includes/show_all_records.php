@@ -15,7 +15,6 @@ function read_all_records__poc()
     return null;
 }
 
-
 function get_all_records_from_api()
 {
     $method = 'GET';
@@ -24,17 +23,19 @@ function get_all_records_from_api()
     $caller = new WSApiCaller();
 
     // $response_json = null;
-    $response_json = $caller->call($path, $method);
+    $response_json = $caller->call($path, $method);    
 
-    $records = null;
+
     if ($response_json) {
-        $records = json_decode($response_json, true);
-        if (isset($records['items'])) {
-            return $records['items'];
+        $response = json_decode($response_json, true);
+        handle_error_messages_from_response($response, GLOBAL_ERROR_MESSAGES);
+        if (isset($response['items'])) {
+            return $response['items'];
         }
     }
+    add_msg_to_errors(GLOBAL_ERROR_MESSAGES, 'API Call failed!');
 
-    return $records;
+    return null;
 }
 
 
@@ -78,10 +79,3 @@ function show_records_table__poc($records)
     return $html;
 }
 
-
-$records = get_all_records_from_api();
-// if (isset($records)) {
-//     echo "<br>", "Records: ", count($records);
-// }
-
-echo show_records_table__poc($records);
