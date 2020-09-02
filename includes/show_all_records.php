@@ -42,12 +42,12 @@ function get_all_records_from_api()
 function create_table_header()
 {
     $html = "<li class='d-row d-header'>" . PHP_EOL;
-    $html .= sprintf('%s %s %s', "<span class='d-col d-col-1'>", 'type', '</span>');
-    $html .= sprintf('%s %s %s', "<span class='d-col d-col-2'>", 'name', '</span>');
-    $html .= sprintf('%s %s %s', "<span class='d-col d-col-3'>", 'content', '</span>');
-    $html .= sprintf('%s %s %s', "<span class='d-col d-col-4'>", 'ttl', '</span>');
-    $html .= sprintf('%s %s %s', "<span class='d-col d-col-5'>", '', '</span>');
-    $html .= sprintf('%s %s %s', "<span class='d-col d-col-6'>", '', '</span>');
+    $html .= "<span class='d-col d-col-1'> type </span>";
+    $html .= "<span class='d-col d-col-2'> name </span>";
+    $html .= "<span class='d-col d-col-3'> content </span>";
+    $html .= "<span class='d-col d-col-4'> ttl </span>";
+    $html .= "<span class='d-col d-col-5'> </span>";
+    $html .= "<span class='d-col d-col-6'> </span>";
 
     $html .= "</li>" . PHP_EOL;
     return $html;
@@ -64,11 +64,10 @@ function show_records_table__poc($records)
     if ($records) {
         foreach ($records as $record) {
             $item = "<li class='d-row' id=" . $record['id'] . ">";
-            $item .= sprintf('%s %s %s', "<span class='d-col d-col-1'>", $record['type'], '</span>');
-            $item .= sprintf('%s %s %s', "<span class='d-col d-col-2'>", $record['name'], '</span>');
-            $item .= sprintf('%s %s %s', "<span class='d-col d-col-3'>", $record['content'], '</span>');
-            $item .= sprintf('%s %s %s', "<span class='d-col d-col-4'>", $record['ttl'], '</span>');
-            // $item .= sprintf('%s %s %s', "<span class='d-col d-col-5'><a href=", '&#9998;', '</span>');
+            $item .= sprintf("<span class='d-col d-col-1'> %s </span>", $record['type']);
+            $item .= sprintf("<span class='d-col d-col-2'> %s </span>", $record['name']);
+            $item .= sprintf("<span class='d-col d-col-3'> %s </span>", $record['content']);
+            $item .= sprintf("<span class='d-col d-col-4'> %s </span>", $record['ttl']);            
             $item .= sprintf("<span class='d-col d-col-5'><a href='%s'>&#9998;</a></span>", $edit_record_path . $record['id']);
             $item .= sprintf("<span class='d-col d-col-6 delete-icon'><a href='%s'>&#128465;</a></span>", $delete_record_path . $record['id']);
             $item .= "</li>";
