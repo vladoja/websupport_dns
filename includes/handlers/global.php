@@ -75,3 +75,79 @@ function add_msg_to_success(string $error_message)
     array_push($msg_array, $error_message);
     $_SESSION[SUCCESS_ARRAY] = $msg_array;
 }
+
+function get_form_input_value(string $input_name, $default = null)
+{
+    return isset($_SESSION[FORM_INPUT][$input_name]) ? $_SESSION[FORM_INPUT][$input_name] : $default;
+}
+
+function getTextFromForm($input_name)
+{
+    $form_data = $_POST[$input_name];
+    if ($form_data == null) {
+        echo "Undefined element: " . $input_name;
+        return null;
+    }
+    // stripe forbidden html and php tags;
+    $form_data = strip_tags($form_data);
+    // replace empty strings
+    $form_data = str_replace(' ', '', $form_data);
+    return $form_data;
+}
+
+
+function getTextFromArray($input_name, $array)
+{
+
+    if ($array) {
+        if (isset($array[$input_name])) {
+            return $array[$input_name];
+        }
+    }
+    return null;
+}
+
+function add_array_values_to_session($dns_type, $array_values)
+{
+    $standard_fields = array('id', 'type', 'name', 'content', 'ttl', 'note');
+    $dns_type = strtoupper($dns_type);
+
+    $_SESSION[FORM_INPUT] = array();
+    foreach ($standard_fields as $field) {
+        $_SESSION[FORM_INPUT][$field] = getTextFromArray($field, $array_values);
+    }
+    // Kvoli prevodu na upper case sa zopakuje pridanie
+    $_SESSION[FORM_INPUT]['dns_type'] = strtoupper($dns_type);
+
+    if ($dns_type === 'MX') {
+        $_SESSION[FORM_INPUT]['prio'] = getTextFromArray('prio', $array_values);
+    }
+
+
+    if ($dns_type === 'SRV') {
+        $_SESSION[FORM_INPUT]['prio'] = getTextFromArray('prio', $array_values);
+        $_SESSION[FORM_INPUT]['port'] = getTextFromArray('port', $array_values);
+        $_SESSION[FORM_INPUT]['weight'] = getTextFromArray('weight', $array_values);
+    }
+
+    return $_SESSION[FORM_INPUT];
+}
+
+
+function parse_form_type()
+{
+    if (isset($_GET['dns_type'])) {
+        $formType = $_GET['dns_type'];
+        return $formType;
+    } else {
+        return null;
+    }
+}
+
+function get_query_param($param_name) {
+    if (isset($_GET[$param_name])) {
+        return $_GET[$param_name];
+    }else {
+        return null;
+    }
+}

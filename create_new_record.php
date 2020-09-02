@@ -4,18 +4,6 @@ require 'includes/form_handlers/create_dns_record_handler.php';
 
 validate_dns_type();
 
-
-function parse_form_type()
-{
-    if (isset($_GET['dns_type'])) {
-        $formType = $_GET['dns_type'];
-        error_log("Create new record: " . $formType);
-        return $formType;
-    } else {
-        return null;
-    }
-}
-
 // $uri = $_SERVER['REQUEST_URI'];
 // error_log($uri);
 

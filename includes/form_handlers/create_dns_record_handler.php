@@ -29,19 +29,19 @@ if (isset($_POST['create_button'])) {
 }
 
 
-function getTextFromForm($input_name)
-{
-    $form_data = $_POST[$input_name];
-    if ($form_data == null) {
-        echo "Undefined element: " . $input_name;
-        return null;
-    }
-    // stripe forbidden html and php tags;
-    $form_data = strip_tags($form_data);
-    // replace empty strings
-    $form_data = str_replace(' ', '', $form_data);
-    return $form_data;
-}
+// function getTextFromForm($input_name)
+// {
+//     $form_data = $_POST[$input_name];
+//     if ($form_data == null) {
+//         echo "Undefined element: " . $input_name;
+//         return null;
+//     }
+//     // stripe forbidden html and php tags;
+//     $form_data = strip_tags($form_data);
+//     // replace empty strings
+//     $form_data = str_replace(' ', '', $form_data);
+//     return $form_data;
+// }
 
 function submit_record_to_api()
 {
@@ -140,13 +140,6 @@ function make_api_call($data_json)
 
     return true;
 }
-
-
-function get_form_input_value(string $input_name, $default = null)
-{
-    return isset($_SESSION[FORM_INPUT][$input_name]) ? $_SESSION[FORM_INPUT][$input_name] : $default;
-}
-
 
 function get_dns_type_from_url($url)
 {

@@ -33,14 +33,16 @@ function show_records_table__poc($records)
     $html = PHP_EOL . "<div class='d-table'>" . PHP_EOL;
     $html .= "<ul>" . PHP_EOL;
     $html .= create_table_header();
+    $edit_record_path = 'show_dns_record.php?dns_id=';
 
     foreach ($records as $record) {
-        $item = "<li class='d-row'>";
+        $item = "<li class='d-row' id=" . $record['id'] . ">";
         $item .= sprintf('%s %s %s', "<span class='d-col d-col-1'>", $record['type'], '</span>');
         $item .= sprintf('%s %s %s', "<span class='d-col d-col-2'>", $record['name'], '</span>');
         $item .= sprintf('%s %s %s', "<span class='d-col d-col-3'>", $record['content'], '</span>');
         $item .= sprintf('%s %s %s', "<span class='d-col d-col-4'>", $record['ttl'], '</span>');
-        $item .= sprintf('%s %s %s', "<span class='d-col d-col-5'>", '&#9998;', '</span>');
+        // $item .= sprintf('%s %s %s', "<span class='d-col d-col-5'><a href=", '&#9998;', '</span>');
+        $item .= sprintf("<span class='d-col d-col-5'><a href='%s'>&#9998;</a></span>",$edit_record_path.$record['id']);
         $item .= sprintf('%s %s %s', "<span class='d-col d-col-6'>", '&#128465;', '</span>');
         $item .= "</li>";
         $html .= $item . PHP_EOL;
