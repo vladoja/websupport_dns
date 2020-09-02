@@ -1,0 +1,200 @@
+{
+    "items": {
+        "A": {
+            "name": {
+                "label": "Subdomain name",
+                "required": true,
+                "default": "@"
+            },
+            "content": {
+                "label": "IPv4 address",
+                "required": true,
+                "default": null
+            },
+            "ttl": {
+                "label": "TTL",
+                "required": null,
+                "default": 600
+            },
+            "note": {
+                "label": "Poznamka",
+                "required": null,
+                "default": null
+            }
+        },
+        "AAAA": {
+            "name": {
+                "label": "Subdomain name",
+                "required": true,
+                "default": "@"
+            },
+            "content": {
+                "label": "IPv6 address",
+                "required": true,
+                "default": null
+            },
+            "ttl": {
+                "label": "TTL",
+                "required": null,
+                "default": 600
+            },
+            "note": {
+                "label": "Poznamka",
+                "required": null,
+                "default": null
+            }
+        },
+        "MX": {
+            "name": {
+                "label": "Subdomain name",
+                "required": true,
+                "default": "@"
+            },
+            "content": {
+                "label": "Domain or mail server",
+                "required": true,
+                "default": null
+            },
+            "prio": {
+                "label": "Priority",
+                "required": true,
+                "default": null
+            },
+            "ttl": {
+                "label": "TTL",
+                "required": null,
+                "default": 600
+            },
+            "note": {
+                "label": "Poznamka",
+                "required": null,
+                "default": null
+            }
+        },
+        "ANAME": {
+            "name": {
+                "label": "Name",
+                "required": true,
+                "default": "@"
+            },
+            "content": {
+                "label": "Canonical hostname",
+                "required": true,
+                "default": null
+            },
+            "ttl": {
+                "label": "TTL",
+                "required": null,
+                "default": 600
+            },
+            "note": {
+                "label": "Poznamka",
+                "required": null,
+                "default": null
+            }
+        },
+        "CNAME": {
+            "name": {
+                "label": "Subdomain name",
+                "required": true,
+                "default": null
+            },
+            "content": {
+                "label": "Canonical hostname",
+                "required": true,
+                "default": null
+            },
+            "ttl": {
+                "label": "TTL",
+                "required": null,
+                "default": 600
+            },
+            "note": {
+                "label": "Poznamka",
+                "required": null,
+                "default": null
+            }
+        },
+        "NS": {
+            "name": {
+                "label": "Subdomain name",
+                "required": true,
+                "default": "@"
+            },
+            "content": {
+                "label": "Canonical hostname",
+                "required": true,
+                "default": null
+            },
+            "ttl": {
+                "label": "TTL",
+                "required": null,
+                "default": 600
+            },
+            "note": {
+                "label": "Poznamka",
+                "required": null,
+                "default": null
+            }
+        },
+        "TXT": {
+            "name": {
+                "label": "Subdomain name",
+                "required": true,
+                "default": "@"
+            },
+            "content": {
+                "label": "Text",
+                "required": true,
+                "default": null
+            },
+            "ttl": {
+                "label": "TTL",
+                "required": null,
+                "default": 600
+            },
+            "note": {
+                "label": "Poznamka",
+                "required": null,
+                "default": null
+            }
+        },
+        "SRV": {
+            "name": {
+                "label": "Subdomain name",
+                "required": true,
+                "default": "@"
+            },
+            "content": {
+                "label": "Canonical hostname",
+                "required": true,
+                "default": null
+            },
+            "prio": {
+                "label": "Priority",
+                "required": true,
+                "default": 10
+            },
+            "port": {
+                "label": "Port",
+                "required": true,
+                "default": null
+            },
+            "weight": {
+                "label": "Relative weight",
+                "required": true,
+                "default": null
+            },
+            "ttl": {
+                "label": "TTL",
+                "required": null,
+                "default": 600
+            },
+            "note": {
+                "label": "Poznamka",
+                "required": null,
+                "default": null
+            }
+        }
+    }
+}

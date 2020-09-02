@@ -42,7 +42,7 @@ function output_success_messages()
 {
     if (check_for_success_messages()) {
         foreach ($_SESSION[SUCCESS_ARRAY] as $key => $msg) {
-            error_log('Printing out success message: ' . $msg);
+            // error_log('Printing out success message: ' . $msg);
             echo '<div class="alert-box success">';
             echo '<span class="close-btn">×</span>';
             echo $msg;
