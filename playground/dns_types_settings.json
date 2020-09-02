@@ -1,0 +1,62 @@
+{
+    "items": {
+        "NS": {
+            "name": "Subdomain name",
+            "content": "Canonical hostname",
+            "ttl": "time to live",
+            "note": "Poznamka"
+        },
+        "A": {
+            "name": "Subdomain name",
+            "content": "IPv4 address",
+            "ttl": "time to live",
+            "note": "Poznamka"
+        }
+    },
+    "items_2": {
+        "NS": {
+            "name": {
+                "label": "Subdomain name",
+                "required": "true",
+                "default": "@"
+            },
+            "content": {
+                "label": "Canonical hostname",
+                "required": "true",
+                "default": null
+            },
+            "ttl": {
+                "label": "TTL",
+                "required": null,
+                "default": 600
+            },
+            "note": {
+                "label": "Poznamka",
+                "required": null,
+                "default": null
+            }
+        },
+        "A": {
+            "name": {
+                "label": "Subdomain name",
+                "required": "true",
+                "default": "@"
+            },
+            "content": {
+                "label": "IPv4 address",
+                "required": "true",
+                "default": null
+            },
+            "ttl": {
+                "label": "TTL",
+                "required": null,
+                "default": 600
+            },
+            "note": {
+                "label": "Poznamka",
+                "required": null,
+                "default": null
+            }
+        }
+    }
+}

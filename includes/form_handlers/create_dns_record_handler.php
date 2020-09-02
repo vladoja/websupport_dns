@@ -171,6 +171,7 @@ function add_form_input_values_to_session($dns_type)
     // if (in_array($dns_type, ['A', 'AAAA', 'ANAME', 'CNAME', 'NS', 'TXT',])
 
     $standard_fields = array('dns_type', 'name', 'content', 'ttl', 'note');
+    $dns_type = strtoupper($dns_type);
 
     $_SESSION[FORM_INPUT] = array();
     foreach ($standard_fields as $field) {
