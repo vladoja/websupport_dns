@@ -52,13 +52,24 @@ function generate_form($conf)
 function generate_form_items($name = 'content', $label = 'IPv4 Address', $default_value = null, $required = null)
 {
     $required = ($required) ? 'required' : '';
+    if (isset($default_value)){
+        if (is_numeric($default_value)) {
+            $default_value = ','.$default_value;
+        }else {
+            $default_value = ",'$default_value'";
+        }
+
+    }else {
+        $default_value = '';
+    }
     $template = <<<EOD
         <div class="form-group">
         <label for="$name">$label</label>
-        <input type="text" name="$name" id="$name" class="form-control" $required autofocus="" value="$default_value">
+        <input type="text" name="$name" id="$name" class="form-control" $required autofocus="" value="<?php echo get_form_input_value('$name'$default_value);?>">
         </div>
 EOD;
     // Note: before the closing EOD or EOT; there should be no spaces or tabs. otherwise you will get an error
 
     return $template;
 }
+
