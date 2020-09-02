@@ -21,7 +21,7 @@ function parse_form_type()
 
 $form_type = parse_form_type();
 if (!$form_type) {
-    $form_type = "A";
+    $form_type = "a";
 }
 
 ?>
@@ -38,29 +38,10 @@ if (!$form_type) {
         <form method="POST" action="create_new_record.php">
             <div class="form-wrapper">
                 <input type="hidden" id="dns_type" name="dns_type" value="<?php echo $form_type;?>">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" id="name" class="form-control" required="" autofocus="" value="<?php echo get_form_input_value('name');?>">
-                </div>
-                <div class="form-group">
-                    <label for="content">Server IP</label>
-                    <input type="text" name="content" id="content" class="form-control" required="" autofocus="" value="<?php echo get_form_input_value('content');?>">
-                </div>
-                <?php if (strtoupper($form_type) === 'MX') {
-                    echo '<div class="form-group">';
-                    echo  '<label for="priority">Record Priority</label>';
-                    echo '<input type="text" name="priority" id="priority" class="form-control" required="" autofocus="" value="'.get_form_input_value('priority') .'">';
-                    echo '</div>';
-                }?>
+                <?php
+                    include('./includes/dns_forms/form_'.strtolower($form_type).'.php');
+                ?>
 
-                <div class="form-group">
-                    <label for="ttl">TTL</label>
-                    <input type="text" name="ttl" id="ttl" class="form-control" value="<?php echo get_form_input_value('ttl', 600);?>" required="" autofocus="">
-                </div>
-                <div class="form-group">
-                    <label for="note">Poznamka</label>
-                    <input type="text" name="note" id="note" class="form-control" autofocus="" value="<?php echo get_form_input_value('note');?>">
-                </div>
                 <div class="form-group">
                     <input type="submit" name="create_button" class="form-control" value="Vytvorit">
                 </div>
