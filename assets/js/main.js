@@ -34,8 +34,24 @@ function initSelectDnsTypeComponent() {
 }
 
 
+function initConfirmDeleteAction() {
+    let elems = document.querySelectorAll('.delete-icon');
+    if (elems) {
+        elems.forEach((item) => {
+            item.addEventListener('click', function (e) {
+                if (!confirm('Naozaj chces zmazat?')) {
+                    e.preventDefault();
+                } else {
+                    console.log('Zmazane');
+                }
+            })
+        });
+    }
+}
+
 initAlertCloseButtons('close-btn');
 initSelectDnsTypeComponent();
+initConfirmDeleteAction();
 
 document.addEventListener('DOMContentLoaded', function () {
     console.log('DOM loaded');

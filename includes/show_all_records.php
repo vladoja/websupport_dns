@@ -59,6 +59,7 @@ function show_records_table__poc($records)
     $html .= "<ul>" . PHP_EOL;
     $html .= create_table_header();
     $edit_record_path = 'show_dns_record.php?dns_id=';
+    $delete_record_path = 'delete_dns_record.php?dns_id=';
 
     if ($records) {
         foreach ($records as $record) {
@@ -69,7 +70,7 @@ function show_records_table__poc($records)
             $item .= sprintf('%s %s %s', "<span class='d-col d-col-4'>", $record['ttl'], '</span>');
             // $item .= sprintf('%s %s %s', "<span class='d-col d-col-5'><a href=", '&#9998;', '</span>');
             $item .= sprintf("<span class='d-col d-col-5'><a href='%s'>&#9998;</a></span>", $edit_record_path . $record['id']);
-            $item .= sprintf('%s %s %s', "<span class='d-col d-col-6'>", '&#128465;', '</span>');
+            $item .= sprintf("<span class='d-col d-col-6 delete-icon'><a href='%s'>&#128465;</a></span>", $delete_record_path . $record['id']);
             $item .= "</li>";
             $html .= $item . PHP_EOL;
         }
