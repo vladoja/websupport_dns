@@ -76,9 +76,6 @@ function validate_input()
         $dns_type = strtoupper($dns_type);
     }
 
-    $name = getTextFromForm('name');
-
-
     $content = getTextFromForm('content');
 
     if ($dns_type === 'A' || $dns_type === 'AAAA') {
@@ -94,13 +91,7 @@ function validate_input()
         return false;
     }
 
-    $note = getTextFromForm('note');
-
-    add_form_input_values_to_session($dns_type);
-
-    // return compact('dns_type', 'name', 'content', 'ttl', 'note');
-    $values = $_SESSION[FORM_INPUT];
-    // error_log('values: ' . print_r($values, true));
+    $values = add_form_input_values_to_session($dns_type);
     return $values;
 }
 
@@ -192,4 +183,5 @@ function add_form_input_values_to_session($dns_type)
     }
 
     // error_log('SESSION values: ' . print_r($_SESSION[FORM_INPUT], true));
+    return $_SESSION[FORM_INPUT];
 }
