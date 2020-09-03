@@ -20,6 +20,8 @@ body {
     justify-content: space-between;
     position: static;
     width: 100%;
+    flex-direction: column;
+    align-items: center;
 }
 
 .container-header a {
@@ -27,15 +29,16 @@ body {
     color: inherit;
 }
 
+.wrapper-logo {
+
+}
+
 .logo {
     margin: 0;
     margin-left: 0px;
-    font-size: 0.75em;
+    font-size: 1.25em;
     font-family: 'Courier New', Courier, monospace;
-    margin-left: 1em;
-    border-bottom: solid black;
-    border-bottom-width: medium;
-    border-bottom-width: 2px;
+    color: #39434b;
 }
 
 .container {

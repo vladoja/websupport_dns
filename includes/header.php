@@ -12,6 +12,8 @@ require 'handlers/global.php';
 </head>
 <body>
     <div class="container-header">
+        <div class="wrapper-logo">
             <a href="index.php"><h1 class="logo">DNS MANAGER</h1></a>
+        </div>    
     </div>
     <div class="container-main">
