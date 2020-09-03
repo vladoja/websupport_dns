@@ -14,7 +14,6 @@ if (!$form_type) {
 
 ?>
 
-    <div class="container">
         <div class="row">
             <?php output_validation_error(FORM_ERROR_MESSAGES);?>
         </div>
@@ -36,7 +35,7 @@ if (!$form_type) {
                 </div>
             </form>
 
-        </div>
+        
     </div>
 </div>
 </body>
