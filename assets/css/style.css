@@ -38,6 +38,19 @@ body {
     border-bottom-width: 2px;
 }
 
+.container {
+    /* border: solid 2px black; */
+    /* width: 60em;
+    height: 22em; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    border-radius: .25em;
+    background: white;
+    margin-top: 1rem;
+}
+
 .container-main {
     display: flex;
     flex-direction: column;
@@ -47,7 +60,7 @@ body {
 }
 
 .d-table {
-    min-width: 800px;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     background-color: #ffffff;
@@ -138,7 +151,7 @@ body {
     background-color: #f44336;
     color: white;
     margin-bottom: 15px;
-    min-width: 800px;
+    width: 100%;
     font-size: 15px;
     line-height: 1.5;
 }
@@ -147,6 +160,9 @@ body {
     background-color: green;
 }
 
+.btn-group {
+    float: right;
+}
 
 .close-btn {
     padding-left: 15px;
@@ -208,7 +224,7 @@ a.btn {
 
 .dropdown {
     display: inline;
-    padding: 0.5rem 0;
+    padding: 10px 0;
     background-color: #009DFA;
     border-color: #009DFA;
     color: #fff;
