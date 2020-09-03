@@ -3,9 +3,9 @@
 class WSApiCaller
 {
 
-    private $apiKey = '3ce3178d-25c4-4ed3-8c64-f5142de20efe';
-    private $secret = 'c48e8c9dbd7e72ff7854433e2ee97927c919568b';
-    private $api = 'https://rest.websupport.sk';
+    private $apiKey = API_KEY;
+    private $secret = API_SECRET;
+    private $api = API_WEBSUPPORT;
 
     public function __construct()
     {
@@ -33,6 +33,26 @@ class WSApiCaller
         return $this->handle_response($http_status, $response, $method, $error_msg);
     }
 
+    public function set_apiKey(string $strApiKey)
+    {
+        if ($strApiKey && is_string($strApiKey)) {
+            $this->apiKey = $strApiKey;
+        }
+    }
+
+    public function set_secret(string $strSecret)
+    {
+        if ($strSecret && is_string($strSecret)) {
+            $this->secret = $strSecret;
+        }
+    }
+
+    public function set_api(string $strApiKey)
+    {
+        if ($strApiKey && is_string($strApiKey)) {
+            $this->api = $strApiKey;
+        }
+    }
 
     private function setCurlOptions($ch, $path, $method, $data_json = null)
     {
