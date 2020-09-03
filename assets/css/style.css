@@ -135,23 +135,33 @@ body {
     margin-bottom: 40px;
     background-color: #fff;
     border: 1px solid #E9EBEE;
-    padding: 0px 15px 40px;
     border-radius: 2px;
+}
+
+.container-form form {
+    margin: 1rem 2rem;
+
 }
 
 .form-header {
     height: 3rem;
     line-height: 3rem;
     text-align: center;
+    background-color: #4d555d;
+    color: #ffffff;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
 }
 
 .form-group {
     width: 100%;
     display: flex;
     flex-direction: row;
+    margin-bottom: .5rem;
 }
 
-.form-group label,.form-group .form-control {
+.form-group label,
+.form-group .form-control {
     width: 100%;
 }
 
