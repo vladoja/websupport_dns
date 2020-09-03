@@ -4,7 +4,7 @@ require './includes/classes/WSApiCaller.php';
 function make_api_call($id)
 {
     $method = 'GET';
-    $path = '/v1/user/self/zone/php-assignment-9.ws/record/' . $id;
+    $path = '/v1/user/self/zone/' . DOMAIN_NAME . '/record/' . $id;
     $caller = new WSApiCaller();
 
 

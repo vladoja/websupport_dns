@@ -99,7 +99,7 @@ function validate_input()
 function make_api_call($data_json)
 {
     $method = 'POST';
-    $path = '/v1/user/self/zone/php-assignment-9.ws/record';
+    $path = '/v1/user/self/zone/'.DOMAIN_NAME.'/record';
     $caller = new WSApiCaller();
     if ($data_json) {
         // error_log("DATA JSON: " . $data_json);

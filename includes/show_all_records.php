@@ -18,7 +18,7 @@ function read_all_records__poc()
 function get_all_records_from_api()
 {
     $method = 'GET';
-    $path = '/v1/user/self/zone/php-assignment-9.ws/record';;
+    $path = '/v1/user/self/zone/'.DOMAIN_NAME.'/record';;
 
     $caller = new WSApiCaller();
 

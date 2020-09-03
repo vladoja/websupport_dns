@@ -6,7 +6,7 @@ require './includes/classes/WSApiCaller.php';
 function call_api_delete_record($id)
 {
     $method = 'DELETE';
-    $path = '/v1/user/self/zone/php-assignment-9.ws/record/' . $id;;
+    $path = '/v1/user/self/zone/'.DOMAIN_NAME.'/record/' . $id;;
 
     $caller = new WSApiCaller();
 
