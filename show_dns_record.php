@@ -22,10 +22,6 @@ add_array_values_to_session($form_type, $response);
 // $_SESSION[FORM_INPUT]['content'] = "1.2.3.4";
 ?>
 
-<h2>
-    <a href="index.php">DNS manager</a>
-</h2>
-
 
 <div class="container-form">
     <?php if (isset($form_type)) {
@@ -39,7 +35,7 @@ add_array_values_to_session($form_type, $response);
             ?>
 
             <div class="form-group">
-                <input type="submit" name="create_button" class="form-control" value="Ulozit">
+                <input type="submit" name="create_button" class="form-control btn btn-primary" value="Ulozit">
             </div>
         </div>
     </form>

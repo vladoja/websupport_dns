@@ -30,7 +30,7 @@ if (!$form_type) {
                     ?>
 
                     <div class="form-group">
-                        <input type="submit" name="create_button" class="form-control" value="Vytvorit">
+                        <input type="submit" name="create_button" class="form-control btn btn-primary" value="Vytvorit">
                     </div>
                 </div>
             </form>
