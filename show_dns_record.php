@@ -35,6 +35,7 @@ add_array_values_to_session($form_type, $response);
             ?>
 
             <div class="form-group">
+                <a href="index.php" class="btn btn-secondary">Zrušiť</a>
                 <input type="submit" name="create_button" class="form-control btn btn-primary" value="Ulozit">
             </div>
         </div>

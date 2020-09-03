@@ -20,7 +20,7 @@ if (!$form_type) {
         </div>
         <div class="container-form">
             <?php if (isset($form_type)){
-                echo '<div class="form-header">DNS Zaznam typu: '. strtoupper($form_type).' </div>';
+                echo '<div class="form-header">Vytvorenie DNS typu: '. strtoupper($form_type).' </div>';
             }?>
             <form method="POST" action="create_new_record.php">
                 <div class="form-wrapper">
@@ -30,6 +30,7 @@ if (!$form_type) {
                     ?>
 
                     <div class="form-group">
+                        <a href="index.php" class="btn btn-secondary">Zrušiť</a>
                         <input type="submit" name="create_button" class="form-control btn btn-primary" value="Vytvorit">
                     </div>
                 </div>

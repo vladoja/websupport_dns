@@ -213,6 +213,15 @@ body {
     color: #fff;
 }
 
+.btn-secondary {
+    color: #9CA9B4;
+    border-color: #9CA9B4;;
+}
+
+.form-group .btn {
+    width: 50%;
+}
+
 a.btn {
     text-align: center;
     text-decoration: none;
