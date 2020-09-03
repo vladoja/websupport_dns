@@ -27,7 +27,7 @@ add_array_values_to_session($form_type, $response);
     <?php if (isset($form_type)) {
         echo '<div class="form-header">DNS Zaznam typu: ' . strtoupper($form_type) . ' </div>';
     } ?>
-    <form method="POST" action="create_new_record.php">
+    <form method="POST" action="update_record.php?dns_id=<?php echo $id;?>">
         <div class="form-wrapper">
             <input type="hidden" id="dns_type" name="dns_type" value="<?php echo $form_type; ?>">
             <?php

@@ -15,7 +15,19 @@ class RequestContentFactory
         //     return json_encode($request_body);
         // }
         // TODO: Lepsie overenie parametrov
-        $values['type'] = $dns_type; 
+        $values['type'] = $dns_type;
+        return json_encode($values);
+    }
+
+
+    public static function create_update_body(string $dns_type, array $values)
+    {
+        if (isset($values['type'])) {
+            unset($values['type']);
+        }
+        if (isset($values['dns_type'])) {
+            unset($values['dns_type']);
+        }
         return json_encode($values);
     }
 }

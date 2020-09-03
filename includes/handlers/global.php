@@ -180,3 +180,33 @@ function handle_error_messages_from_response($response,string $message_category)
     }
     return true;
 }
+
+
+function add_form_input_values_to_session($dns_type)
+{
+    // if (in_array($dns_type, ['A', 'AAAA', 'ANAME', 'CNAME', 'NS', 'TXT',])
+
+    $standard_fields = array('dns_type', 'name', 'content', 'ttl', 'note');
+    $dns_type = strtoupper($dns_type);
+
+    $_SESSION[FORM_INPUT] = array();
+    foreach ($standard_fields as $field) {
+        $_SESSION[FORM_INPUT][$field] = getTextFromForm($field);
+    }
+    // Kvoli prevodu na upper case sa zopakuje pridanie
+    $_SESSION[FORM_INPUT]['dns_type'] = strtoupper($dns_type);
+
+    if ($dns_type === 'MX') {
+        $_SESSION[FORM_INPUT]['prio'] = getTextFromForm('prio');
+    }
+
+
+    if ($dns_type === 'SRV') {
+        $_SESSION[FORM_INPUT]['prio'] = getTextFromForm('prio');
+        $_SESSION[FORM_INPUT]['port'] = getTextFromForm('port');
+        $_SESSION[FORM_INPUT]['weight'] = getTextFromForm('weight');
+    }
+
+    // error_log('SESSION values: ' . print_r($_SESSION[FORM_INPUT], true));
+    return $_SESSION[FORM_INPUT];
+}
